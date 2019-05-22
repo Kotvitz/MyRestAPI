@@ -2,11 +2,15 @@ package com.task.myrestapi.model;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Asset {
 	List<Attribute> attributes;
 	Base base;
 	String mobId;
 	Common common;
+	
+	@SerializedName("media-items")
 	List<MediaItem> mediaItems;
 
 	public Asset(List<Attribute> attributes, Base base, String mobId, Common common, List<MediaItem> mediaItems) {
