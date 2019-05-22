@@ -6,13 +6,13 @@ public class Folder {
 	String path;
 	String id;
 	List<Asset> assets;
-	
+
 	public Folder(String path, String id, List<Asset> assets) {
 		this.path = path;
 		this.id = id;
 		this.assets = assets;
 	}
-	
+
 	public String getPath() {
 		return path;
 	}

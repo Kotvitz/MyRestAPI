@@ -75,5 +75,4 @@ public class MediaItem {
 	public void setType(String type) {
 		this.type = type;
 	}
-
 }
