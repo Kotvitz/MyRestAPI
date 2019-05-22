@@ -1,4 +1,4 @@
-package com.task.myrestapi.utils;
+package com.task.myrestapi.data;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,6 +10,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.task.myrestapi.model.Folder;
+import com.task.myrestapi.model.FolderContent;
 
 public class DataExtractor {
 	
@@ -49,5 +50,46 @@ public class DataExtractor {
 			e.printStackTrace();
 		}
 		return folders;
+	}
+	
+	public FolderContent getFolderContent(String key) {
+		FolderContent content = null;
+		try {
+			Gson gson = new Gson();
+			JsonObject jsonObject = gson.fromJson(new FileReader(JSON_FILENAME), JsonObject.class);
+			content = gson.fromJson((JsonObject)jsonObject.get(key), FolderContent.class);
+		} catch (JsonSyntaxException e) {
+			e.printStackTrace();
+		} catch (JsonIOException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return content;
+	}
+	
+	public List<FolderContent> getAllContents() {
+		List<FolderContent> contents = new ArrayList<FolderContent>();
+		Gson gson = new Gson();
+		try {
+			JsonObject jsonObject = gson.fromJson(new FileReader(JSON_FILENAME), JsonObject.class);
+			for(String key : jsonObject.keySet()) {
+				FolderContent content = getFolderContent(key);
+				contents.add(content);
+			}
+		} catch (JsonSyntaxException e) {
+			e.printStackTrace();
+		} catch (JsonIOException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return contents;
+	}
+	
+	public FolderContent getContentByFolderId(String id) {
+		List<FolderContent> contents = getAllContents(); 
+		FolderContent content = contents.stream().filter(f -> f.getId().contentEquals(id)).findFirst().orElse(null); 
+		return content;
 	}
 }

@@ -3,21 +3,11 @@ package com.task.myrestapi.model;
 import java.util.List;
 
 public class Folder {
-	String path;
 	String id;
-	List<Asset> assets;
+	String path;
 
-	public Folder(String path, String id, List<Asset> assets) {
-		this.path = path;
+	public Folder(String id, String path) {
 		this.id = id;
-		this.assets = assets;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
 		this.path = path;
 	}
 
@@ -28,12 +18,12 @@ public class Folder {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public List<Asset> getAssets() {
-		return assets;
+	
+	public String getPath() {
+		return path;
 	}
 
-	public void setAssets(List<Asset> assets) {
-		this.assets = assets;
+	public void setPath(String path) {
+		this.path = path;
 	}
 }
