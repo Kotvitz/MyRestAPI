@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    myrestapi-service:
+        image: myrestapi-image
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        ports:
+            - 8087:8080
+        volumes:
+            - /data/myrestapi-app
