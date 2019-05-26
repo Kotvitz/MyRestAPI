@@ -3,6 +3,7 @@ package com.task.myrestapi.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,15 +15,17 @@ import com.task.myrestapi.model.FolderContent;
 
 @Controller
 public class FolderController {
-	
+
 	DataExtractor extractor = new DataExtractor();
-	
+
+	@CrossOrigin(origins = { "http://localhost:3000" })
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	@ResponseBody
 	public List<Folder> getAllFolders() {
 		return extractor.getAllFolders();
 	}
-	
+
+	@CrossOrigin(origins = { "http://localhost:3000" })
 	@RequestMapping(method = RequestMethod.GET, value = "/{folderId}")
 	@ResponseBody
 	public FolderContent getContentByFolderId(@PathVariable("folderId") String folderId) {
